@@ -8,5 +8,9 @@ export default {
   },
   number: {
     fontSize: '30px',
+    color: 'green',
+  },
+  zero: {
+    color: 'red',
   },
 };
