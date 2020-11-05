@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import withStyles from 'react-jss';
+import propTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './index-styles';
 
@@ -24,5 +25,9 @@ const Index = ({ classes }) => {
     </div>
   );
 };
+
+Index.propTypes = {
+  classes: propTypes.object.isRequired,
+}
 
 export default withStyles(styles)(Index);
