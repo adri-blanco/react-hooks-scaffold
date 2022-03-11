@@ -1,33 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import withStyles from 'react-jss';
-import propTypes from 'prop-types';
-import classNames from 'classnames';
-import styles from './index-styles';
+import Styled from './Index.styles';
 
-const Index = ({ classes }) => {
+function Index() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     dispatch.counter.asyncIncrement();
   }, []);
 
-  const { clickCounter } = useSelector(s => s.counter);
+  const { clickCounter } = useSelector((s) => s.counter);
+
+  const onClick = useCallback(async () => {
+    setLoading(true);
+    await dispatch.counter.asyncIncrement();
+    setLoading(false);
+  }, []);
 
   return (
-    <div className={classes.container}>
-      <span
-        className={classNames(classes.number, {
-          [classes.zero]: clickCounter === 0,
-        })}
-      >
-        {clickCounter}
-      </span>
-    </div>
+    <Styled.Container>
+      <Styled.Grid>
+        <Styled.Number number={clickCounter}>{clickCounter}</Styled.Number>
+        <Styled.Button onClick={onClick}>More</Styled.Button>
+        {loading && <Styled.Loading />}
+      </Styled.Grid>
+    </Styled.Container>
   );
-};
-
-Index.propTypes = {
-  classes: propTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Index);
+Index.propTypes = {};
+
+export default Index;
