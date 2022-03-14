@@ -1,33 +1,22 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import Button from '../components/Button/Button';
 import Styled from './Index.styles';
 
 function Index() {
-  const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    dispatch.counter.asyncIncrement();
-  }, []);
+  const navigate = useNavigate();
 
-  const { clickCounter } = useSelector((s) => s.counter);
-
-  const onClick = useCallback(async () => {
-    setLoading(true);
-    await dispatch.counter.asyncIncrement();
-    setLoading(false);
-  }, []);
+  const onClick = () => {
+    navigate('/demo');
+  };
 
   return (
     <Styled.Container>
-      <Styled.Grid>
-        <Styled.Number number={clickCounter}>{clickCounter}</Styled.Number>
-        <Styled.Button onClick={onClick}>More</Styled.Button>
-        {loading && <Styled.Loading />}
-      </Styled.Grid>
+      <Styled.Card>
+        <span>Welcome to the home page</span>
+        <Button onClick={onClick}>To the demo</Button>
+      </Styled.Card>
     </Styled.Container>
   );
 }
-
-Index.propTypes = {};
 
 export default Index;

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 
 const Container = styled.div`
   background-color: whitesmoke;
@@ -10,56 +10,15 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Grid = styled.div`
-  display: grid;
-  gap: 12px;
-  justify-items: center;
+const Card = styled.div`
   padding: 24px 32px;
   background-color: white;
-  border: 1px solid #c1c1c1;
   border-radius: 8px;
-`;
-
-const Number = styled.span`
-  font-size: 30px;
-  color: ${({ number }) => (number === 0 ? 'red' : 'green')};
-`;
-
-const Button = styled.button`
-  background-color: white;
-  border: 1px solid #c1c1c1;
-  border-radius: 4px;
-  padding: 8px 16px;
-  cursor: pointer;
-  font-size: 16px;
-  &:hover {
-    background-color: whitesmoke;
-  }
-`;
-
-export const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const Loading = styled.div`
-  border-radius: 50%;
-  border: 4px solid transparent;
-  border-top-color: #c1c1c1;
-  height: 30px;
-  width: 30px;
-  animation: ${rotate} 0.8s linear infinite;
+  display: grid;
+  gap: 24px;
 `;
 
 export default {
   Container,
-  Number,
-  Button,
-  Loading,
-  Grid,
+  Card,
 };
